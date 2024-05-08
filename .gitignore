@@ -1,5 +1,6 @@
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-crash.log
-crash.*.loggit 
+
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+user_data_exec.tpl

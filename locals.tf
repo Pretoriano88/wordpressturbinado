@@ -1,5 +1,4 @@
 locals {
- 
   common_tags = {
     Project   = "Projeto Final Bootcamp Elven Works"
     CreatedAt = "09/05/2024"

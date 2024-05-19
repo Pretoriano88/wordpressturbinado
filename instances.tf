@@ -7,8 +7,8 @@ resource "aws_key_pair" "keypair" {
 }
 
 resource "aws_instance" "servidor" {
-  ami           = "ami-0a1179631ec8933d7"
-  instance_type = "t2.nano"
+  ami           = var.ami_image
+  instance_type = var.type_instance
 
   // Amarrando a instancia EC2 a subnet  
   subnet_id = aws_subnet.subnet-public-1a.id
@@ -17,7 +17,12 @@ resource "aws_instance" "servidor" {
   vpc_security_group_ids = [aws_security_group.securitygroupEC2.id]
 
   // Usando user data para subir antes da instancia 
-  user_data = file("user_data.sh")
+  user_data = templatefile("ec2wordpress.sh", {
+    wp_db_name       = aws_db_instance.default.db_name
+    wp_username      = aws_db_instance.default.username
+    wp_user_password = aws_db_instance.default.password
+    wp_db_host       = aws_db_instance.default.address
+  })
 
   // Amarrando a keypair acima a instancia ec2 
   key_name = aws_key_pair.keypair.key_name
@@ -29,16 +34,19 @@ resource "aws_instance" "servidor" {
 
 
 }
-// Criação da segunda instância na subnet-public-1b
-resource "aws_instance" "servidor_1b" {
-  ami                    = "ami-0a1179631ec8933d7"
-  instance_type          = "t2.nano"
-  subnet_id              = aws_subnet.subnet-public-1b.id
-  vpc_security_group_ids = [aws_security_group.securitygroupEC2.id]
-  user_data              = file("user_data.sh")
-  key_name               = aws_key_pair.keypair.key_name
 
-  tags = {
-    Name = "EC2 que rodará wordpress - Subnet 1b"
-  }
+
+# Arquivo com os dados de criação da instância ec2 para monitoramento com prometheus+grafana
+
+resource "aws_instance" "monitor" {
+  ami                         = var.ami_image
+  instance_type               = var.type_instance
+  vpc_security_group_ids      = [aws_security_group.allow_monitor.id]
+  key_name                    = aws_key_pair.keypair.key_name
+  user_data                   = base64encode(templatefile("monitor_config.sh",  {}))
+  monitoring                  = true
+  subnet_id                   = aws_subnet.subnet-public-1a.id
+  associate_public_ip_address = true
+  tags                        = merge(local.common_tags, { Name = "Monitor Machine" })
+
 }

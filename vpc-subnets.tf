@@ -17,7 +17,7 @@ resource "aws_subnet" "subnet-public-1a" {
 
 resource "aws_subnet" "subnet-public-1b" {
   vpc_id                  = aws_vpc.mainvpc.id
-  cidr_block              = cidrsubnet(aws_vpc.mainvpc.cidr_block, 8, 2) # 10.0.2.0/24
+  cidr_block              = cidrsubnet(aws_vpc.mainvpc.cidr_block, 8, ) # 10.0.2.0/24
   availability_zone       = "${var.region}b"
   map_public_ip_on_launch = var.public_onlaunch
 

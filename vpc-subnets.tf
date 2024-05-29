@@ -33,7 +33,7 @@ resource "aws_subnet" "subnet-private-2a" {
   availability_zone = "${var.region}a"
 
   tags = {
-    name = "Sub-Private-1a"
+    Name = "Sub-Private-1a"
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_subnet" "subnet-private-2b" {
   availability_zone = "${var.region}b"
 
   tags = {
-    name = "Sub-Private-1b"
+    Name = "Sub-Private-1b"
   }
 }
 
@@ -53,6 +53,6 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   subnet_ids = [aws_subnet.subnet-private-2a.id, aws_subnet.subnet-private-2b.id]
 
   tags = {
-    name = "Grupo do RDS subnets privadas"
+    Name = "Grupo do RDS subnets privadas"
   }
 }

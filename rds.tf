@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "bdword" {
   allocated_storage    = var.allo_stora
   db_name              = var.dbname
   engine               = var.engine

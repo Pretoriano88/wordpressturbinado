@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Instalação do Docker e Docker Compose
-sudo yum install -y docker
+sudo apt install -y docker
 sudo systemctl start docker
 sudo systemctl enable docker
 
@@ -12,7 +12,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 wget https://projetoformacaosrelumr921298290312.s3.us-west-1.amazonaws.com/prometheus_grafana.zip
 
 # Instalação do unzip
-sudo yum install -y unzip
+sudo apt install -y unzip
 
 # Extração do arquivo zip
 unzip prometheus_grafana.zip

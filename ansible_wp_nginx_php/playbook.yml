@@ -3,5 +3,9 @@
     become: yes
     #
     roles:
-      - mysql-server
       - wordpress
+      
+      
+      
+      
+      

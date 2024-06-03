@@ -1,0 +1,51 @@
+- name: Instalação nginx e php para o funcionamento do WP
+  apt:
+    name:
+      - nginx
+      - unzip
+      - php-zip
+      - php-imagick
+      - php-curl
+      - php-fpm
+      - php-mbstring
+      - php-cli
+      - php-bcmath
+      - php-xml
+      - php-mysql
+      - php-common
+      - php-gd
+      - php-json
+    update_cache: yes
+
+- name: Configuração do vhost nginx
+  template:
+    src: vhost.nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/default
+
+- name: Baixando o projeto do WordPress e descompactando
+  ansible.builtin.unarchive:
+    src: https://wordpress.org/latest.zip
+    dest: /var/www/html
+    remote_src: yes
+
+- name: Alterando o arquivo wp-config
+  template:
+    src: wp-config.php.j2
+    dest: /var/www/html/wordpress/wp-config.php
+
+- name: Alterando permissão da pasta /var/www/html/wordpress
+  ansible.builtin.file:
+    path: /var/www/html/wordpress
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Reiniciando nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Reiniciando php-fpm
+  service:
+    name: php-fpm
+    state: restarted

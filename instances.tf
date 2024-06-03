@@ -16,7 +16,6 @@ resource "aws_instance" "servidor_wordpress" {
   // Amarrando a instancia EC2 a subnet  
   subnet_id = aws_subnet.subnet-public-1a.id
 
-  monitoring                  = true
   associate_public_ip_address = true
 
   // Qual security group minha instancia ficará 
@@ -30,7 +29,7 @@ resource "aws_instance" "servidor_wordpress" {
       wp_user_password = aws_db_instance.bdword.password
       wp_db_host       = aws_db_instance.bdword.address
 
-  }) 
+  })
 
 
 
@@ -40,6 +39,9 @@ resource "aws_instance" "servidor_wordpress" {
     Name = "EC2 wordpress"
   }
 
+  // Fará com que essa EC2 seja provisionado após o RDS
+
+  depends_on = [aws_db_instance.bdword]
 
 }
 

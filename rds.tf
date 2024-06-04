@@ -11,6 +11,8 @@ resource "aws_db_instance" "bdword" {
   skip_final_snapshot  = true
   // security e subnet groups que irá pertencer 
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.name
+  // Qual security group meu rdsficará 
+  vpc_security_group_ids = [aws_security_group.allow_rds.id]
 
 
 

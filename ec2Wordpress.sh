@@ -21,5 +21,8 @@ sudo ansible-playbook playbook.yml \
 
 
 # Download e execução do script node_exporter.sh
-sudo wget https://projetoformacaosrelumr921298290312.s3.us-west-1.amazonaws.com/node_exporter.sh
+cd /tmp
+sudo wget https://github.com/Pretoriano88/node_exporter/archive/refs/heads/main.zip
+sudo unzip node_exporter-main.zip -d /tmp
+cd /tmp/node_exporter-main
 sudo sh node_exporter.sh

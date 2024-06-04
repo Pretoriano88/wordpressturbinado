@@ -26,7 +26,7 @@ variable "ami_image" {
 variable "type_instance" {
   description = "O tipo da instancia"
   type        = string
-  default     = "t2.nano"
+  default     = "t2.medium"
 
 }
 

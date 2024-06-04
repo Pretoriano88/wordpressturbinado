@@ -19,7 +19,7 @@ variable "public_onlaunch" {
 variable "ami_image" {
   description = "Imagem da ami que a instancia rodara "
   type        = string
-  default     = "ami-04b70fa74e45c3917"
+  default     = "ami-04505e74c0741db8d"
 
 }
 

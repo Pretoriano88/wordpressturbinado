@@ -1,8 +1,8 @@
 #!/bin/bash
-NODE_EXPORTER_VERSION="0.18.0"
-wget https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-tar -xzvf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-cd node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-arm64.tar.gz
+tar -xzf node_exporter-1.8.1.linux-arm64.tar.gz
+cd node_exporter-v1.8.1.linux-amd64
 cp node_exporter /usr/local/bin
 
 useradd --no-create-home --shell /bin/false node_exporter

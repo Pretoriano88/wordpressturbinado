@@ -18,11 +18,8 @@ cd /tmp/ansible-main/
 sudo ansible-playbook playbook.yml \
 --extra-vars "wp_db_name=${wp_db_name} wp_username=${wp_username} wp_user_password=${wp_user_password} wp_db_host=${wp_db_host}"
 
-
-
 # Download e execução do script node_exporter.sh
 cd /tmp
-sudo wget https://github.com/Pretoriano88/node_exporter/archive/refs/heads/main.zip
+wget https://projetoformacaosrelumr921298290312.s3.us-west-1.amazonaws.com/node_exporter.sh
 sudo unzip node_exporter-main.zip -d /tmp
-cd /tmp/node_exporter-main
 sudo sh node_exporter.sh

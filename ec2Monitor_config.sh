@@ -16,7 +16,6 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 # Torna o arquivo '/usr/local/bin/docker-compose' executável.
 sudo chmod +x /usr/local/bin/docker-compose
 
-
 # Cria uma nova rede Docker chamada 'monitoring'.
 sudo docker network create monitoring
 
@@ -28,7 +27,6 @@ wget https://github.com/Pretoriano88/prometheus_grafana/archive/refs/heads/main.
 # Extração do arquivo zip
 # Extrai o conteúdo do arquivo 'main.zip'.
 unzip main.zip
-
 
 # Muda o diretório atual para 'prometheus_grafana', que foi extraído do arquivo zip.
 cd prometheus_grafana

@@ -53,7 +53,7 @@ resource "aws_instance" "monitor" {
   instance_type               = var.type_instance
   vpc_security_group_ids      = [aws_security_group.allow_monitor.id]
   key_name                    = aws_key_pair.keypair.key_name
-  user_data                   = base64encode(templatefile("ec2Monitor_config.sh",  {}))
+  user_data                   = base64encode(templatefile("ec2Monitor_config.sh", {}))
   subnet_id                   = aws_subnet.subnet-public-1a.id
   associate_public_ip_address = true
   tags                        = merge(local.common_tags, { Name = "Monitor Machine" })

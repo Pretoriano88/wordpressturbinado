@@ -19,18 +19,21 @@ sudo chmod +x /usr/local/bin/docker-compose
 # Cria uma nova rede Docker chamada 'monitoring'.
 sudo docker network create monitoring
 
+
 # Download do arquivo Prometheus e Grafana
 # Baixa o arquivo 'main.zip' do repositório GitHub especificado.
-wget https://github.com/Pretoriano88/prometheus_grafana/archive/refs/heads/main.zip
+wget -O /tmp/main.zip https://github.com/Pretoriano88/prometheus_grafana/archive/refs/heads/main.zip
 
+
+cd /tmp
 
 # Extração do arquivo zip
 # Extrai o conteúdo do arquivo 'main.zip'.
 unzip main.zip
 
 # Muda o diretório atual para 'prometheus_grafana', que foi extraído do arquivo zip.
-cd prometheus_grafana
+cd /tmp/prometheus_grafana-main
 
 # Inicialização dos contêineres do Docker com Docker Compose
-sudo /usr/local/bin/docker-compose up -d
+sudo docker-compose up -d
 # Usa o Docker Compose para iniciar os contêineres definidos no arquivo 'docker-compose.yml' presente no diretório atual em segundo plano.
